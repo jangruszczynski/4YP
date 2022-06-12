@@ -45,8 +45,11 @@ class Epoch:
 
         with tqdm(dataloader, desc=self.stage_name, file=sys.stdout, disable=not (self.verbose)) as iterator:
             for x, y in iterator:
+                #for x, y, z in iterator: FOR GETTING FILENAMES WITH EVERY BATCH
                 x, y = x.to(self.device), y.to(self.device)
                 loss, y_pred = self.batch_update(x, y)
+
+                #print(z)
 
                 # update loss logs
                 loss_value = loss.cpu().detach().numpy()
